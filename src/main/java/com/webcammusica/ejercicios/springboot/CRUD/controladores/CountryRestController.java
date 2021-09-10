@@ -37,7 +37,7 @@ public class CountryRestController {
 	/**
 	 * Raíz para las llamadas al servicio REST
 	 */
-	public static final String COUNTRY_RESOURCE = "/api/";
+	public static final String COUNTRY_RESOURCE = "/api/country";
 
 	private final CountryService countryService;
 
@@ -67,8 +67,8 @@ public class CountryRestController {
 
 	/**
 	 * Se debe usar una aplicación para el envío de peticiones REST como Postman.
-	 * Ejemplo: URL: "http://localhost:9090/países/api/". También funciona:
-	 * "http://localhost:9090/países/api" sin "/" al final. Body de archivo
+	 * Ejemplo: URL: "http://localhost:9090/países/api/country/". También funciona:
+	 * "http://localhost:9090/países/api/country" sin "/" al final. Body de archivo
 	 * tipo JSON (en Postman usar opción botón de radio: "raw"): " { "name":
 	 * "Germany", "population": 79778000 } "
 	 * 
