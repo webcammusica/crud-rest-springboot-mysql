@@ -1,0 +1,41 @@
+Esta aplicación Spring fue creada con Spring Boot mediante el URL https://start.spring.io,
+por lo que tanto si se accede a este localizador de resolución única desde un navegador o desde
+Spring Tool Suite 4 o superior se recomienda tener acceso a Intenet. 
+
+Para usarlo:
+
+Desde Spring Tool Suite 4:
+
+1. Clonar el repositorio de ejercicios si no lo tienes aún:
+"https://github.com/webcammusica/ejercicios-spring-boot".
+2. "File" --> "Import"... --> "Maven" --> "Existing Maven Projets".
+3. "Browse" --> selecciona la carpeta principal del proyecto. Ejemplo: "F:\repositorios\github.com\ejercicios-spring-boot\ejercicio6".
+4. Clic en el botón "Finish".
+5. Espera a que el proyecto construya automáticamente, en la parte inferior derecha de Spring Tool Suite
+aparece algo como "building...".
+6. Cuando finaliza los errores de compilación desaparecen, entonces clic derecho sobre el nombre del proyecto
+--> Run as --> Spring Boot App.
+7. Espera 30 segundo para estar seguro de que la aplicación se desplegó completamente.
+8. Accede a través del navegador a "http://localhost:9090/countries/".
+
+
+Puedes agregar países mediante una solicitud REST POST con Postman u otro software a:
+"http://localhost:9090/países/api/country/".
+También funciona: "http://localhost:9090/países/api/country" sin "/" al final.
+incluyendo en el Body del archivo tipo JSON (en Postman usar opción botón de radio: "raw"): 
+	 "
+	 {
+	    "name": "Germany",
+	    "population": 79778000
+	}
+	"
+También puedes consultar un país por id accediendo a través de un navegador a por ejemplo:
+"http://localhost:9090/countries/api/country/2/".
+En este ejemplo la parte del URL que definida en la clase es "/api/country" y la que define
+el parámetro del método es "/2/". Es indispensable incluir el "/" al final.
+
+Si tienes alguna duda puedes escribirme a carlos.diazpenuela@outlook.com, trataré de responderte pronto.
+
+Referencias:
+
+https://danielme.com/2018/02/21/tutorial-spring-boot-web-spring-data-jpa/
