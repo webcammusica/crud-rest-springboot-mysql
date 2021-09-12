@@ -20,6 +20,7 @@ public class IdFactura implements Serializable {
 	@Column(name = "persona_id")
 	Long personaId;
 	
+	
 	public IdFactura() {
 		// TODO Auto-generated constructor stub
 	}

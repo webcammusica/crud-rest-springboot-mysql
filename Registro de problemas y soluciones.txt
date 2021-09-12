@@ -1,0 +1,62 @@
+Registro de problemas y soluciones
+
+20210912 13:45
+
+Los cambios en la base de datos fueron parciales, solamente se creó una
+llave foránea de 2 @ManyToOne de la entida Factura,
+la correspondiente a personas pero no la
+correspondiente a países, esto impedía el inner join.
+
+El error no está relacionado con "extends EntidadAuditable".
+
+Luego de crear otra @Entity, JPA creo la llave foránea para countries, 
+la entida fue "Cliente". Para crearla se uso una copia de "Persona".
+
+Luego de reiniciar la aplicación JPA creó la llave foránea que se pudo observar en
+phpmyadmin, estructura, relaciones, restricciones de clave foránea; sin embargo
+solo se observan los índices de tipo "BTREE", para "persona_id" y "cliente_id", 
+esto puede deberse a que en la tabla coutries ya se habían hecho inserciones 
+utilizando "@GeneratedValue(strategy = GenerationType.AUTO)", por esta razón 
+el índice puede estar en un contexto no alcanzable al reiniciar la aplicación
+y solamente se actualizó cuando tuvo que crear otro índice, el de clientes.
+
+Se eliminarán archivos y cambios en la base de datos relacionada con
+ "Cliente". Se debe hacer manualmente, Spring Boot no lo hace.
+
+Se probarán inserciones válidadas e inválidas en la tabla facturas.
+Las pruebas muestran que funciona correctamente, impidiendo la inserción
+de paises sin id en "countries", por ejemplo el country_id 3 no 
+existe:
+
+Error
+
+consulta SQL:
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (3,2)
+
+MySQL ha dicho: Documentación
+#1452 - Cannot add or update a child row: a foreign key constraint fails (`country`.`facturas`, CONSTRAINT `FKdi0v8g5xag3mpkhjf30wo2dql` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`))
+
+Y cuando el id de la persona no existe:
+
+Error
+
+consulta SQL:
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (1,3)
+
+MySQL ha dicho: Documentación
+#1452 - Cannot add or update a child row: a foreign key constraint fails (`country`.`facturas`, CONSTRAINT `FKjb6wk9s9pyn2m4nrb98tijoa6` FOREIGN KEY (`persona_id`) REFERENCES `personas` (`id`))
+
+
+Inserciones exitosas:
+
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (1,1)
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (1,2)
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (4,2)
+
+
+

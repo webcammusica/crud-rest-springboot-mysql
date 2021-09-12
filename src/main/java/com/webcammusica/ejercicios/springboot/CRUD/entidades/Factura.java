@@ -27,6 +27,7 @@ public class Factura {
     @JoinColumn(name = "persona_id")
     Persona persona;
 
+
     //private List<String> items;
     
     public Factura() {
