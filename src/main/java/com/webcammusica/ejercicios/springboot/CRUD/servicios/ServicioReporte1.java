@@ -1,6 +1,15 @@
 package com.webcammusica.ejercicios.springboot.CRUD.servicios;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.webcammusica.ejercicios.springboot.CRUD.dom.DOMReporte1;
 
 @Service
 public class ServicioReporte1 {
@@ -30,4 +39,21 @@ public class ServicioReporte1 {
 	 * JOIN users AS u ON f.id_user = u.id WHERE f.id_user = ".$user[0]["id"]."
 	 * ORDER BY f.date DESC LIMIT 6";
 	 */
+	
+	@Autowired
+    EntityManagerFactory emf;
+	
+	
+	public List<DOMReporte1> getDOMDomReporte1() {
+		
+		EntityManager em = emf.createEntityManager();
+		//em.getTransaction().begin( );
+		 Query query = em.createQuery("Select p.id,p.nombre,c.name from Factura f INNER JOIN Persona p ON f.id.personaId = p.id INNER JOIN Country c ON f.id.countryId = c.id");
+		 @SuppressWarnings("unchecked")
+		 List<DOMReporte1> list=(List<DOMReporte1>)query.getResultList();
+		 System.out.println("Student Name :"); em.close();
+		 
+		 return list;
+		
+	}
 }

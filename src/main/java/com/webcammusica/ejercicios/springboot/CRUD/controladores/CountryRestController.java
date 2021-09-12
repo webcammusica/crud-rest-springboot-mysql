@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webcammusica.ejercicios.springboot.CRUD.dom.DOMReporte1;
 import com.webcammusica.ejercicios.springboot.CRUD.entidades.Country;
 import com.webcammusica.ejercicios.springboot.CRUD.servicios.CountryService;
+import com.webcammusica.ejercicios.springboot.CRUD.servicios.ServicioReporte1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,14 +42,16 @@ public class CountryRestController {
 	public static final String COUNTRY_RESOURCE = "/api/country";
 
 	private final CountryService countryService;
+	private final ServicioReporte1 servicioReporte1;
 
 	/**
 	 * Método constructor
 	 * 
 	 * @param countryService
 	 */
-	public CountryRestController(CountryService countryService) {
+	public CountryRestController(CountryService countryService, ServicioReporte1 servicioReporte1) {
 		this.countryService = countryService;
+		this.servicioReporte1 = servicioReporte1;
 	}
 
 	/**
@@ -134,5 +138,12 @@ public class CountryRestController {
 		return country.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 	}
+	
+
+    @GetMapping("/joinQuery")
+    public List<DOMReporte1> getQuery()
+    {
+        return servicioReporte1.getDOMDomReporte1();
+    }
 
 }
