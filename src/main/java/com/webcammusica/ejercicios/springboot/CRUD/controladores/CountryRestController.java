@@ -1,5 +1,6 @@
 package com.webcammusica.ejercicios.springboot.CRUD.controladores;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -41,17 +42,20 @@ public class CountryRestController {
 	 */
 	public static final String COUNTRY_RESOURCE = "/api/country";
 
-	private final CountryService countryService;
-	private final ServicioReporte1 servicioReporte1;
+	/**
+	 * @Autowired es equivalente a inicializar en el constructor:
+	 * this.countryService = countryService;
+	 */
+	@Autowired
+	private CountryService countryService;
 
 	/**
 	 * Método constructor
 	 * 
 	 * @param countryService
 	 */
-	public CountryRestController(CountryService countryService, ServicioReporte1 servicioReporte1) {
-		this.countryService = countryService;
-		this.servicioReporte1 = servicioReporte1;
+	public CountryRestController(CountryService countryService) {
+		
 	}
 
 	/**
@@ -139,11 +143,5 @@ public class CountryRestController {
 				.orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 	}
 	
-
-    @GetMapping("/joinQuery")
-    public List<DOMReporte1> getQuery()
-    {
-        return servicioReporte1.getDOMDomReporte1();
-    }
 
 }
