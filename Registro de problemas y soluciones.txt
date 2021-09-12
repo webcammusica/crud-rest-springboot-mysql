@@ -5,7 +5,9 @@ Registro de problemas y soluciones
 Los cambios en la base de datos fueron parciales, solamente se creó una
 llave foránea de 2 @ManyToOne de la entidad Factura,
 la correspondiente a personas pero no la
-correspondiente a países, generaba riesgo de error en el inner join.
+correspondiente a países.
+
+Esto generaba riesgo de error en el inner join por permitir un id de países inexistente.
 
 El error no está relacionado con "extends EntidadAuditable".
 
