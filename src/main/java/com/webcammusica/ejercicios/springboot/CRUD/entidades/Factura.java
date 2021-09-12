@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.Table;
 
 //Debe estar en el servicio
 //import java.util.List;
 
 @Entity
+@Table(name = "facturas")
 public class Factura {
 
     @EmbeddedId
