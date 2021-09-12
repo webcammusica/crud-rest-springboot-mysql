@@ -3,9 +3,9 @@ Registro de problemas y soluciones
 20210912 13:45
 
 Los cambios en la base de datos fueron parciales, solamente se creó una
-llave foránea de 2 @ManyToOne de la entida Factura,
+llave foránea de 2 @ManyToOne de la entidad Factura,
 la correspondiente a personas pero no la
-correspondiente a países, esto impedía el inner join.
+correspondiente a países, generaba riesgo de error en el inner join.
 
 El error no está relacionado con "extends EntidadAuditable".
 
@@ -16,9 +16,10 @@ Luego de reiniciar la aplicación JPA creó la llave foránea que se pudo observ
 phpmyadmin, estructura, relaciones, restricciones de clave foránea; sin embargo
 solo se observan los índices de tipo "BTREE", para "persona_id" y "cliente_id", 
 esto puede deberse a que en la tabla coutries ya se habían hecho inserciones 
-utilizando "@GeneratedValue(strategy = GenerationType.AUTO)", por esta razón 
-el índice puede estar en un contexto no alcanzable al reiniciar la aplicación
-y solamente se actualizó cuando tuvo que crear otro índice, el de clientes.
+utilizando "@GeneratedValue(strategy = GenerationType.AUTO)" desde el CRUD
+, por esta razón el índice puede estar en un contexto no alcanzable al reiniciar
+ la aplicación y solamente se actualizó cuando tuvo que crear otro índice,
+ el de clientes.
 
 Se eliminarán archivos y cambios en la base de datos relacionada con
  "Cliente". Se debe hacer manualmente, Spring Boot no lo hace.
