@@ -7,9 +7,9 @@ Para usarlo:
 Desde Spring Tool Suite 4:
 
 1. Clonar el repositorio de ejercicios si no lo tienes aún:
-"https://github.com/webcammusica/ejercicios-spring-boot".
+"https://github.com/webcammusica/crud-rest-springboot-mysql".
 2. "File" --> "Import"... --> "Maven" --> "Existing Maven Projets".
-3. "Browse" --> selecciona la carpeta principal del proyecto. Ejemplo: "F:\repositorios\github.com\ejercicios-spring-boot\ejercicio6".
+3. "Browse" --> selecciona la carpeta principal del proyecto. Ejemplo: "F:\repositorios\github.com\crud-rest-springboot-mysql".
 4. Clic en el botón "Finish".
 5. Espera a que el proyecto construya automáticamente, en la parte inferior derecha de Spring Tool Suite
 aparece algo como "building...".
