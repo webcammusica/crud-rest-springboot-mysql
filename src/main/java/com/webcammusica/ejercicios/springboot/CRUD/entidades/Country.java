@@ -1,10 +1,13 @@
 package com.webcammusica.ejercicios.springboot.CRUD.entidades;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -44,6 +47,9 @@ public class Country extends EntidadAuditable {
 	@Max(2000000000)
 	private Integer population;
 
+	@OneToMany(mappedBy = "country")
+	Set<Factura> facturas;
+
 	/**
 	 * constructor heredado de EntidadAuditable
 	 */
@@ -63,13 +69,11 @@ public class Country extends EntidadAuditable {
 		this.population = population;
 	}
 
-	
 	/**
 	 * Getters y setters.
 	 * 
 	 */
-	
-	
+
 	public Long getId() {
 		return id;
 	}

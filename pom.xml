@@ -80,7 +80,7 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Crea el archivo "/ejercicio6/target/ejercicio6-0.0.1-SNAPSHOT/WEB-INF/classes/META-INF/spring-configuration-metadata.json" 
+		<!-- Crea el archivo "./target/crud-rest-springboot-mysql6-0.0.1-SNAPSHOT/WEB-INF/classes/META-INF/spring-configuration-metadata.json" 
 			que detalla las propiedades personalizadas que vayamos añadiendo al igual que para generar el JAR o el war:
 			1. Run as Maven clean, 2. Run as: Maven install. Se debe esperar hasta que Maven limpie "succes" para instalar.--> 
 		<dependency>
