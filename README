@@ -31,11 +31,32 @@ incluyendo en el Body del archivo tipo JSON (en Postman usar opción botón de r
 	"
 También puedes consultar un país por id accediendo a través de un navegador a por ejemplo:
 "http://localhost:9090/countries/api/country/2/".
-En este ejemplo la parte del URL que definida en la clase es "/api/country" y la que define
+En este ejemplo la parte del URL definida en la clase es "/api/country" y la que define
 el parámetro del método es "/2/". Es indispensable incluir el "/" al final.
+
+Puedes consultar todos los países en formato JSON en:http://localhost:9090/countries/api/country/all.
+
+Puedes consultar todos los países en formato JSP en 2 URL diferentes una con @Controller y otra con @RestController: 
+Con @Controller:
+http://localhost:9090/countries/
+Con @RestController
+http://localhost:9090/countries/api/country/listado
+
+Puedes ver un ejemplo de reporte usando javax.persistence.Query y javax.persistence.TypedQuery:
+
+Con Query:
+
+http://localhost:9090/countries/api/reportes/reporte1MavQ
+
+Con TypedQuery:
+
+http://localhost:9090/countries/api/reportes/reporte1MavTQ
+
+
 
 Si tienes alguna duda puedes escribirme a carlos.diazpenuela@outlook.com, trataré de responderte pronto.
 
 Referencias:
 
 https://danielme.com/2018/02/21/tutorial-spring-boot-web-spring-data-jpa/
+https://stackoverflow.com/questions/10807496/error-cannot-create-typedquery-for-query-with-more-than-one-return
