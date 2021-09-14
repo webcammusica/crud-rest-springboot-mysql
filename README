@@ -44,7 +44,7 @@ http://localhost:9090/countries/
 Con @RestController
 http://localhost:9090/countries/api/country/listado
 
-Puedes ver un ejemplo de reporte usando javax.persistence.Query y javax.persistence.TypedQuery:
+Puedes ver un ejemplo de reporte que hace un inner join entre 3 tablas usando javax.persistence.Query y javax.persistence.TypedQuery:
 
 Con Query:
 http://localhost:9090/countries/api/reportes/reporte1MavQ
