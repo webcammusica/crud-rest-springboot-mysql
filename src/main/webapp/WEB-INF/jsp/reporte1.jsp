@@ -24,24 +24,25 @@
    <div class="container">
  
       <div class="title">
-        <h1>Países</h1>
+        <h1>Reporte 1</h1>
       </div>
  
       <c:choose>
  
-            <c:when test="${not empty countriesList}">
+            <c:when test="${not empty tuplasR1}">
      
                 <ul>
-                    <c:forEach var="item" items="${countriesList}">
-                        <li>${item.name}: <fmt:formatNumber
-                                value="${item.population}" /></li>
+                    <c:forEach var="tupla" items="${tuplasR1}">
+                        <li> ${tupla.nombrePersona} 
+                        , id: ${tupla.idPersona}, 
+                        viene de ${tupla.pais}</li>
                     </c:forEach>
                 </ul>
      
             </c:when>
              
             <c:otherwise>
-                <b>NO DATA</b>
+                <b>No hay registros para este reporte.</b>
             </c:otherwise>
              
         </c:choose>

@@ -11,6 +11,14 @@ public class DOMReporte1 {
 	
 	public DOMReporte1() {
 		// TODO Auto-generated constructor stub
+		
+	}
+	
+	public DOMReporte1(Long idPersona, String nombrePesona, String pais) {
+		// TODO Auto-generated constructor stub
+		this.idPersona = idPersona;
+		this.nombrePersona = nombrePesona;
+		this.pais = pais;
 	}
 
 	public Long getIdPersona() {

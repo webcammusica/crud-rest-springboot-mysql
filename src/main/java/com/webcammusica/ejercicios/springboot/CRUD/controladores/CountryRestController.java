@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.webcammusica.ejercicios.springboot.CRUD.dom.DOMReporte1;
 import com.webcammusica.ejercicios.springboot.CRUD.entidades.Country;
@@ -26,6 +27,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import javax.validation.Valid;
 
 @RestController
@@ -44,10 +48,11 @@ public class CountryRestController {
 
 	/**
 	 * @Autowired es equivalente a inicializar en el constructor:
-	 * this.countryService = countryService;
+	 *            this.countryService = countryService;
 	 */
 	@Autowired
 	private CountryService countryService;
+	
 
 	/**
 	 * Método constructor
@@ -55,7 +60,7 @@ public class CountryRestController {
 	 * @param countryService
 	 */
 	public CountryRestController(CountryService countryService) {
-		
+
 	}
 
 	/**
@@ -128,7 +133,7 @@ public class CountryRestController {
 		return country.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 	}
-	
+
 	/**
 	 * La anotación @RequestMapping define el URL que escucha la petición procesada
 	 * en el método en este caso la raíz "/"
@@ -142,6 +147,29 @@ public class CountryRestController {
 		return country.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 	}
-	
 
+	/**
+	 * JSP ./reporte1, usando el repositorio de Country
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/reporte1")
+	public ModelAndView reportar1() {
+		ModelAndView mav = new ModelAndView("reporte1");
+		List<Country> paises = countryService.findAll();
+		mav.addObject("paises", paises);
+		return mav;
+	}
+	
+	/**
+	 * JSP usando TypedQuery y no el JPARepository
+	 * para comprobar el tipo de objetos que retorna
+	 */
+	@RequestMapping(value = "/reporte1TQ")
+	public ModelAndView reportar1TQ() {
+		ModelAndView mav = new ModelAndView("reporte1");
+		List<Country> paises = countryService.getDOMDomReporte1();
+		mav.addObject("paises", paises);
+		return mav;
+	}
 }

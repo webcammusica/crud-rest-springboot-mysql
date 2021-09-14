@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.webcammusica.ejercicios.springboot.CRUD.dom.DOMReporte1;
 import com.webcammusica.ejercicios.springboot.CRUD.entidades.Country;
@@ -52,12 +53,28 @@ public class ControladorDOMReporte1 {
 	 * @param servicioReporte1
 	 */
 	public ControladorDOMReporte1(ServicioReporte1 servicioReporte1) {
-		
+
 	}
 
 	@GetMapping("/DOMReporte1")
 	public List<DOMReporte1> getQuery() {
-		return servicioReporte1.getDOMDomReporte1();
+		return servicioReporte1.getDOMDomReporte1Query();
+	}
+
+	@RequestMapping(value = "/reporte1MavQ")
+	public ModelAndView JPSQuery() {
+		ModelAndView mav = new ModelAndView("reporte1");
+		List<DOMReporte1> tuplasR1 = servicioReporte1.getDOMDomReporte1Query();
+		mav.addObject("tuplasR1", tuplasR1);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/reporte1MavTQ")
+	public ModelAndView JPSTypedQuery() {
+		ModelAndView mav = new ModelAndView("reporte1");
+		List<DOMReporte1> tuplasR1 = servicioReporte1.getDOMDomReporte1TypedQuery();
+		mav.addObject("tuplasR1", tuplasR1);
+		return mav;
 	}
 
 }
