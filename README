@@ -37,24 +37,22 @@ el parámetro del método es "/2/". Es indispensable incluir el "/" al final.
 Puedes consultar todos los países en formato JSON en:http://localhost:9090/countries/api/country/all.
 
 Puedes consultar todos los países en formato JSP en 2 URL diferentes una con @Controller y otra con @RestController: 
+
 Con @Controller:
 http://localhost:9090/countries/
+
 Con @RestController
 http://localhost:9090/countries/api/country/listado
 
 Puedes ver un ejemplo de reporte usando javax.persistence.Query y javax.persistence.TypedQuery:
 
 Con Query:
-
 http://localhost:9090/countries/api/reportes/reporte1MavQ
 
 Con TypedQuery:
-
 http://localhost:9090/countries/api/reportes/reporte1MavTQ
 
-
-
-Si tienes alguna duda puedes escribirme a carlos.diazpenuela@outlook.com, trataré de responderte pronto.
+Si tienes alguna duda puedes escribirme a @webcammusica en Twitter, trataré de responderte pronto.
 
 Referencias:
 
