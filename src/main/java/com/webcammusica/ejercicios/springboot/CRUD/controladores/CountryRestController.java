@@ -153,11 +153,11 @@ public class CountryRestController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/reporte1")
+	@RequestMapping(value = "/listado")
 	public ModelAndView reportar1() {
-		ModelAndView mav = new ModelAndView("reporte1");
-		List<Country> paises = countryService.findAll();
-		mav.addObject("paises", paises);
+		ModelAndView mav = new ModelAndView("countriesList");
+		List<Country> countriesList = countryService.findAll();
+		mav.addObject("countriesList", countriesList);
 		return mav;
 	}
 	
