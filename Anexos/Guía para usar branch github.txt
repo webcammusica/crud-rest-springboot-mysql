@@ -10,9 +10,9 @@ branch se descarta.
 Dentro de la interfaz principal de Github Desktop existe la posibilidad de
 seleccionar la rama del repositorio clonado, se selecciona:
 
- "Current branch": "jpa_amplaido"
+ "Current branch": "jpa_ampliado"
 
-Luego de seleccionar la rama ahbiendo previamente clonado el repositorio en la
+Luego de seleccionar la rama habiendo previamente clonado el repositorio en la
 rama principal "main" mediante Github Desktop, se selecciona el menú e item 
 de menú:
 
