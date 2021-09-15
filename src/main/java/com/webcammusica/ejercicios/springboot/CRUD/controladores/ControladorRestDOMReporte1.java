@@ -30,14 +30,14 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(ControladorDOMReporte1.REPORTES_RESOURCE)
+@RequestMapping(ControladorRestDOMReporte1.REPORTES_RESOURCE)
 
-public class ControladorDOMReporte1 {
+public class ControladorRestDOMReporte1 {
 
 	/**
 	 * log de la clase
 	 */
-	private static final Logger logger = LoggerFactory.getLogger(ControladorDOMReporte1.class);
+	private static final Logger logger = LoggerFactory.getLogger(ControladorRestDOMReporte1.class);
 
 	/**
 	 * Raíz para las llamadas al servicio REST
@@ -52,7 +52,7 @@ public class ControladorDOMReporte1 {
 	 * 
 	 * @param servicioReporte1
 	 */
-	public ControladorDOMReporte1(ServicioReporte1 servicioReporte1) {
+	public ControladorRestDOMReporte1(ServicioReporte1 servicioReporte1) {
 
 	}
 
@@ -62,7 +62,7 @@ public class ControladorDOMReporte1 {
 	}
 
 	@RequestMapping(value = "/reporte1MavQ")
-	public ModelAndView JPSQuery() {
+	public ModelAndView JSPQuery() {
 		ModelAndView mav = new ModelAndView("reporte1");
 		List<DOMReporte1> tuplasR1 = servicioReporte1.getDOMDomReporte1Query();
 		mav.addObject("tuplasR1", tuplasR1);
@@ -70,7 +70,7 @@ public class ControladorDOMReporte1 {
 	}
 	
 	@RequestMapping(value = "/reporte1MavTQ")
-	public ModelAndView JPSTypedQuery() {
+	public ModelAndView JSPTypedQuery() {
 		ModelAndView mav = new ModelAndView("reporte1");
 		List<DOMReporte1> tuplasR1 = servicioReporte1.getDOMDomReporte1TypedQuery();
 		mav.addObject("tuplasR1", tuplasR1);
