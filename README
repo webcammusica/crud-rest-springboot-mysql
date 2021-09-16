@@ -20,8 +20,8 @@ aparece algo como "building...".
 
 
 Puedes agregar países mediante una solicitud REST POST con Postman u otro software a:
-"http://localhost:9090/países/api/country/".
-También funciona: "http://localhost:9090/países/api/country" sin "/" al final.
+"http://localhost:9090/countries/api/country/".
+También funciona: "http://localhost:9090/countries/api/country" sin "/" al final.
 incluyendo en el Body del archivo tipo JSON (en Postman usar opción botón de radio: "raw"): 
 	 "
 	 {
