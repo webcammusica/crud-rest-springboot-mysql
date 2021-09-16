@@ -1,0 +1,99 @@
+Registro de problemas y soluciones
+
+20210912 13:45 ACTUALIZACIÓN MANUAL DE RELACIONES ENTRE TABLAS
+
+Los cambios en la base de datos fueron parciales, solamente se creó una
+llave foránea de 2 @ManyToOne de la entidad Factura,
+la correspondiente a personas pero no la
+correspondiente a países.
+
+Esto generaba riesgo de error en el inner join por permitir un id de países inexistente.
+
+El error no está relacionado con "extends EntidadAuditable".
+
+Luego de crear otra @Entity, JPA creo la llave foránea para countries, 
+la entida fue "Cliente". Para crearla se uso una copia de "Persona".
+
+Luego de reiniciar la aplicación JPA creó la llave foránea que se pudo observar en
+phpmyadmin, estructura, relaciones, restricciones de clave foránea; sin embargo
+solo se observan los índices de tipo "BTREE", para "persona_id" y "cliente_id", 
+esto puede deberse a que en la tabla coutries ya se habían hecho inserciones 
+utilizando "@GeneratedValue(strategy = GenerationType.AUTO)" desde el CRUD
+, por esta razón el índice puede estar en un contexto no alcanzable al reiniciar
+ la aplicación y solamente se actualizó cuando tuvo que crear otro índice,
+ el de clientes.
+
+Se eliminarán archivos y cambios en la base de datos relacionada con
+ "Cliente". Se debe hacer manualmente, Spring Boot no lo hace.
+
+Se probarán inserciones válidadas e inválidas en la tabla facturas.
+Las pruebas muestran que funciona correctamente, impidiendo la inserción
+de paises sin id en "countries", por ejemplo el country_id 3 no 
+existe:
+
+Error
+
+consulta SQL:
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (3,2)
+
+MySQL ha dicho: Documentación
+#1452 - Cannot add or update a child row: a foreign key constraint fails (`country`.`facturas`, CONSTRAINT `FKdi0v8g5xag3mpkhjf30wo2dql` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`))
+
+Y cuando el id de la persona no existe:
+
+Error
+
+consulta SQL:
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (1,3)
+
+MySQL ha dicho: Documentación
+#1452 - Cannot add or update a child row: a foreign key constraint fails (`country`.`facturas`, CONSTRAINT `FKjb6wk9s9pyn2m4nrb98tijoa6` FOREIGN KEY (`persona_id`) REFERENCES `personas` (`id`))
+
+
+Inserciones exitosas:
+
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (1,1)
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (1,2)
+
+INSERT INTO `facturas`(`country_id`, `persona_id`) VALUES (4,2)
+
+Se procede a crear el DOM con el inner join.
+
+
+20210915 21:00 JAVA NO FUNCIONA EN UBUNTU 16.04 (SECUNDARIO, OBVIADO)
+
+Se intenta instalar Java:
+https://cloudo3.com/es/computacion-en-la-nube/como-instalar-manualmente-java-8-en-ubuntu-16-04/1978
+
+ https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245048_d3c52aa6bfa54d3ca74e617f18309292
+
+en Ubuntu 16.04. Se daña el open JDK instalado.
+
+20210915 21:00 PETICIÓN POST EN FORMULARIO JSP GENERA ERROR
+
+Haciendo uso de "login.jsp" se adapta "formAddPais.jsp" cambiando el método de GET a
+POST, lo cual no está soportado por las dependecias de SpringBoot: 
+
+<!--Esta dependencia se agrega para poder utilizar el lenguaje JSTL en 
+			los JSP's -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+<!-- permite usar el compilador para JSP's -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+Se intenta usar Thymeleaf pero es incompatible con las dependencias mencioandas anteriormente.
+
+Finalmente se usa GET, usando @Controller y @RequestMapping, esto permite enviar
+parámetros que son enviados internamente por Java al CountryService, específicamente al
+método insert(Country). Esto permite evitar el uso de POST y @PostMapping.

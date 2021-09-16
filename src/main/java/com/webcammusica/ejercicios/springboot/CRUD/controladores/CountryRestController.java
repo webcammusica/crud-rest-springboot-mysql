@@ -1,9 +1,9 @@
 package com.webcammusica.ejercicios.springboot.CRUD.controladores;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.webcammusica.ejercicios.springboot.CRUD.entidades.Country;
 import com.webcammusica.ejercicios.springboot.CRUD.servicios.CountryService;
@@ -37,9 +38,15 @@ public class CountryRestController {
 	/**
 	 * Raíz para las llamadas al servicio REST
 	 */
-	public static final String COUNTRY_RESOURCE = "/api/";
+	public static final String COUNTRY_RESOURCE = "/api/country";
 
-	private final CountryService countryService;
+	/**
+	 * @Autowired es equivalente a inicializar en el constructor:
+	 *            this.countryService = countryService;
+	 */
+	@Autowired
+	private CountryService countryService;
+	
 
 	/**
 	 * Método constructor
@@ -47,7 +54,7 @@ public class CountryRestController {
 	 * @param countryService
 	 */
 	public CountryRestController(CountryService countryService) {
-		this.countryService = countryService;
+
 	}
 
 	/**
@@ -67,8 +74,8 @@ public class CountryRestController {
 
 	/**
 	 * Se debe usar una aplicación para el envío de peticiones REST como Postman.
-	 * Ejemplo: URL: "http://localhost:9090/países/api/". También funciona:
-	 * "http://localhost:9090/países/api" sin "/" al final. Body de archivo
+	 * Ejemplo: URL: "http://localhost:9090/países/api/country/". También funciona:
+	 * "http://localhost:9090/países/api/country" sin "/" al final. Body de archivo
 	 * tipo JSON (en Postman usar opción botón de radio: "raw"): " { "name":
 	 * "Germany", "population": 79778000 } "
 	 * 
@@ -120,7 +127,7 @@ public class CountryRestController {
 		return country.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 	}
-	
+
 	/**
 	 * La anotación @RequestMapping define el URL que escucha la petición procesada
 	 * en el método en este caso la raíz "/"
@@ -135,4 +142,28 @@ public class CountryRestController {
 				.orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 	}
 
+	/**
+	 * JSP ./reporte1, usando el repositorio de Country
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/listado")
+	public ModelAndView reportar1() {
+		ModelAndView mav = new ModelAndView("countriesList");
+		List<Country> countriesList = countryService.findAll();
+		mav.addObject("countriesList", countriesList);
+		return mav;
+	}
+	
+	/**
+	 * JSP usando TypedQuery y no el JPARepository
+	 * para comprobar el tipo de objetos que retorna
+	 */
+	@RequestMapping(value = "/reporte1TQ")
+	public ModelAndView reportar1TQ() {
+		ModelAndView mav = new ModelAndView("reporte1");
+		List<Country> paises = countryService.getDOMDomReporte1();
+		mav.addObject("paises", paises);
+		return mav;
+	}
 }

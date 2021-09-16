@@ -33,7 +33,7 @@
      
                 <ul>
                     <c:forEach var="item" items="${countriesList}">
-                        <li>${item.name}:<fmt:formatNumber
+                        <li>${item.name}: <fmt:formatNumber
                                 value="${item.population}" /></li>
                     </c:forEach>
                 </ul>

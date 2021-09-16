@@ -1,0 +1,28 @@
+14092021 10:12
+
+Para los cambios relacionados con el inner join en JPA se utiliza una rama o 
+branch llamada "jpa_ampliado".
+
+Dado que la configuración con Git por consola cmd requiere conocimiento de
+secure shell (ssh) y de llaves públicas y privadas esta forma de clonar la 
+branch se descarta. 
+
+Dentro de la interfaz principal de Github Desktop existe la posibilidad de
+seleccionar la rama del repositorio clonado, se selecciona:
+
+ "Current branch": "jpa_ampliado"
+
+Luego de seleccionar la rama habiendo previamente clonado el repositorio en la
+rama principal "main" mediante Github Desktop, se selecciona el menú e item 
+de menú:
+
+Repository -> Pull.
+
+
+Esto permite guardar los cambios remotos de la branch sobre el repositorio local.
+
+En el caso anterior no hay copia local en ningún medio de los cambios hechos en
+el branch, por lo que si se borrara el branch en remoto se perdería el trabajo.
+Por tal motivo se recomienda guardar una copia local de archivos entregables
+críticos hasta que no se formalice la entrega, por ejemplo con una "pull request"
+y una "merge".

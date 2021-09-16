@@ -8,8 +8,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webcammusica.ejercicios.springboot.CRUD.entidades.Country;
 import com.webcammusica.ejercicios.springboot.CRUD.repositorios.CountryRepository;
@@ -37,6 +42,10 @@ public class CountryService {
 
 	@Autowired
 	CountryRepository countryRepository;
+	
+
+	@Autowired
+    EntityManagerFactory emf;
 
 	/**
 	 * constructor
@@ -134,6 +143,23 @@ public class CountryService {
 		}
 
 		return countryRepository.findById(id);
+
+	}
+	
+	/**
+	 * Usando una TypedQuery
+	 */
+
+	@RequestMapping(value = "/reporte1TyQ")
+	public List<Country> getDOMDomReporte1() {
+
+		EntityManager em = emf.createEntityManager();
+		// em.getTransaction().begin( );
+		TypedQuery<Country> query = em.createQuery("Select c from Country c",Country.class);
+		// @SuppressWarnings("unchecked")
+		List<Country> list = query.getResultList();
+
+		return list;
 
 	}
 }
