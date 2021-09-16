@@ -21,10 +21,10 @@
  
 <body>
  
-     <form id="form1" name="myform" method="get" action="http://localhost:9090/countries/input">
-                 Usuario: <input type = "text" name = "yonghu" />
-                 Contraseña: <input type = "password" name = "mima" />
-        input:<input type="submit"/>
+      <form method="get" action="http://localhost:9090/countries/addPais">
+            Nombre: <input type = "text" name = "name" />
+            Población: <input type = "text" name = "population" />
+        	input:<input type="submit"/>
      </form>
       
  
